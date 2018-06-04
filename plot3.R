@@ -5,6 +5,9 @@ df1$Date <- as.Date(df1$Date, "%d/%m/%Y")
 datetime <- paste(df1$Date, df1$Time) # Now class(datetime) is "character" vector
 df1$Datetime <- as.POSIXlt(datetime) # Add a new column to df1
 
+png("plot3.png", width=480, height=480)
+## When using dev.copy, the legend spacing was expanded.
+
 with(df1, {
         plot(Datetime, Sub_metering_1, col="black", type="l",
              xlab="", ylab="Energy sub meeting")
@@ -15,5 +18,4 @@ legend("topright", col=c("black","red","blue"),
        lty=1,
        legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
 
-dev.copy(png, file="plot3.png",width=480, height=480)
 dev.off()
